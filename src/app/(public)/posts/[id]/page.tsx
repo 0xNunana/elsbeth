@@ -49,9 +49,6 @@ export default async function PostPage({ params }: PostPageProps) {
           initialLikes={post.likes}
           initialDislikes={post.dislikes}
         />
-        <div className="w-full">
-          <EmailSignupForm />
-        </div>
       </footer>
     </article>
   );

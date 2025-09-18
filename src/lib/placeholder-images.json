@@ -1,0 +1,10 @@
+{
+  "placeholderImages": [
+    {
+      "id": "dagna-bio-photo",
+      "description": "A portrait of Dagna Corona Holdbrook.",
+      "imageUrl": "https://picsum.photos/seed/dagna/600/600",
+      "imageHint": "woman writer"
+    }
+  ]
+}

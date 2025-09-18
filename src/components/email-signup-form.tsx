@@ -14,6 +14,10 @@ import {
 } from "@/components/ui/form";
 import { toast } from "sonner";
 
+import { createNotification } from "@/lib/notifications";
+import { useState } from "react";
+import { Loader2 } from "lucide-react";
+
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
 });
@@ -25,11 +29,20 @@ export function EmailSignupForm() {
       email: "",
     },
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
-    toast.success("Subscription successful!");
-    form.reset();
+    setIsSubmitting(true);
+    try {
+      await createNotification(values);
+      toast.success("Subscription successful!");
+      form.reset();
+    } catch (error) {
+      toast.error("Subscription failed. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -60,7 +73,8 @@ export function EmailSignupForm() {
             )}
           />
 
-          <Button type="submit" variant="default">
+          <Button type="submit" variant="default" disabled={isSubmitting}>
+            {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             Subscribe
           </Button>
         </div>

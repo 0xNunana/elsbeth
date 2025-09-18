@@ -15,3 +15,8 @@ export type User = {
   email: string | null;
   avatar: string | null;
 };
+
+export type Notification = {
+  email: string;
+  createdAt: string;
+};

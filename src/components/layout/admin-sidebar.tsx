@@ -37,7 +37,7 @@ export function AdminSidebar() {
     try {
       await firebaseSignOut();
       toast.success("Logged out successfully.");
-      router.push("/admin/login");
+      router.push("/");
     } catch (error) {
       toast.error("Error logging out.");
     }

@@ -17,7 +17,14 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Edit, Trash2, PlusCircle, Loader2 } from "lucide-react";
+import {
+  Edit,
+  Trash2,
+  PlusCircle,
+  Loader2,
+  HomeIcon,
+  LogOut,
+} from "lucide-react";
 import { getPosts, deletePost } from "@/lib/posts";
 import { useEffect, useState } from "react";
 import { Post } from "@/types";
@@ -34,12 +41,25 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { toast } from "sonner";
+import { useAuth } from "@/hooks/use-auth";
+import { useRouter } from "next/navigation";
 
 export default function AdminDashboardPage() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const { user, signOut: firebaseSignOut } = useAuth();
+  const router = useRouter();
 
+  const handleLogout = async () => {
+    try {
+      await firebaseSignOut();
+      toast.success("Logged out successfully.");
+      router.push("/");
+    } catch (error) {
+      toast.error("Error logging out.");
+    }
+  };
   useEffect(() => {
     async function fetchPosts() {
       setLoading(true);
@@ -73,6 +93,20 @@ export default function AdminDashboardPage() {
 
   return (
     <div className="flex flex-col gap-8">
+      <div className=" sm:hidden flex justify-between items-center">
+        <Link href="/" className="flex items-center">
+          <HomeIcon className="mr-2 h-4 w-4" />
+          Back to Home
+        </Link>
+        <Button
+          variant="outline"
+          className="w-full mt-4"
+          onClick={handleLogout}
+        >
+          <LogOut className="mr-2 h-4 w-4" />
+          <span className="group-data-[collapsible=icon]:hidden">Logout</span>
+        </Button>
+      </div>
       <div className="flex items-center justify-between">
         <div>
           <h1 className="font-headline text-3xl font-bold">Dashboard</h1>

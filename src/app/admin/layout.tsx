@@ -10,7 +10,7 @@ import { Loader2 } from "lucide-react";
 function AdminAuthGuard({ children }: { children: React.ReactNode }) {
   const { user, loading, isInitialLoad } = useAuth();
   const router = useRouter();
-  console.log("user", user);
+
   useEffect(() => {
     if (!loading && !user && !isInitialLoad) {
       router.push("/login");

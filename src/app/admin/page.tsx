@@ -93,23 +93,21 @@ export default function AdminDashboardPage() {
 
   return (
     <div className="flex flex-col gap-8">
-      <div className=" sm:hidden flex justify-between items-center">
+      <div className=" sm:hidden flex justify-between items-center border-b-2 border-border pb-4">
         <Link href="/" className="flex items-center">
           <HomeIcon className="mr-2 h-4 w-4" />
           Back to Home
         </Link>
-        <Button
-          variant="outline"
-          className="w-full mt-4"
-          onClick={handleLogout}
-        >
+        <Button variant="outline" onClick={handleLogout}>
           <LogOut className="mr-2 h-4 w-4" />
           <span className="group-data-[collapsible=icon]:hidden">Logout</span>
         </Button>
       </div>
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-headline text-3xl font-bold">Dashboard</h1>
+          <h1 className="font-headline text-2xl md:text-3xl font-bold">
+            Dashboard
+          </h1>
           <p className="text-muted-foreground">Manage your creative works.</p>
         </div>
         <Button asChild>

@@ -12,7 +12,7 @@ export default async function HomePage() {
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
           A tranquil corner of the internet for poems, stories, and reflections
-          by Dagna Corona Holdbrook.
+          by Dagna Corona Obeng Holdbrook.
         </p>
       </section>
 

@@ -32,7 +32,6 @@ export function EmailSignupForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
     setIsSubmitting(true);
     try {
       await createNotification(values);

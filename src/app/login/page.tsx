@@ -61,7 +61,6 @@ export default function LoginPage() {
       setIsLoading(false);
     }
   };
-  console.log("login page", isLoading);
 
   return (
     <div className=" min-h-screen w-full p-4  bg-muted/40">
